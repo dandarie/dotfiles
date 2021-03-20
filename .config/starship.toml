@@ -1,11 +1,10 @@
-#add_newline = false
+add_newline = false
+
+format = "[# ](bold red)$all"
 
 [[battery.display]]
 threshold = 25
 style = "bold red"
-
-
-format = "[# ](bold red)$all"
 
 [character]
 success_symbol = "[↳](bold green)"

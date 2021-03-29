@@ -20,6 +20,7 @@ control () {
 
 
 alias cli=./cli
+alias tinker="cli exec php artisan tinker"
 alias dc="docker-compose"
 alias pls="sudo"
 alias upgrade="sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y"

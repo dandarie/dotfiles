@@ -2,15 +2,24 @@ add_newline = false
 
 format = "[# ](bold red)$all"
 
+[battery]
+format = "[$symbol $percentage]($style) "
+full_symbol = "🔋"
+charging_symbol = "🔌"
+discharging_symbol = "⚡️"
+
 [[battery.display]]
 threshold = 25
-style = "bold red"
+style = "bold #ff9900"
 
 [character]
 success_symbol = "[↳](bold green)"
+error_symbol = "[↳](bold red)"
 
 [status]
 disabled = false
+symbol = "✖"
+format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
 
 # Disable the package module, hiding it from the prompt completely
 

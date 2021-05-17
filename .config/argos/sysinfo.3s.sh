@@ -11,7 +11,8 @@ temp=$(sensors | grep -oP 'Package.*?\+\K[0-9.]+')
 fan_speed=$(sensors | grep -oP 'cpu_fan.*?\K[0-9.]+')
 if [ -d "/proc/driver/nvidia" ]; then
     gpu_temp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
-    echo " 💻${temp%%.*}° 🎮${gpu_temp%%.*}° ⮾${fan_speed} "
+    # echo " 💻 ${temp%%.*}°  🎮 ${gpu_temp%%.*}°  ❊ ${fan_speed} "
+    echo "${temp%%.*}° ${gpu_temp%%.*}° ${fan_speed}❊"
 else
     echo "${temp%%.*}° ${fan_speed}"
 fi

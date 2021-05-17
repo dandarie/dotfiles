@@ -47,6 +47,9 @@ symbol = " "
 [git_branch]
 symbol = " "
 
+[git_status]
+disabled = true
+
 [golang]
 symbol = " "
 

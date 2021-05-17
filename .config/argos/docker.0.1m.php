@@ -9,6 +9,10 @@ class DockerApps
     {
         $this->readApps();
     }
+    
+    public function reverseApp($app) {
+    	return join('.', array_reverse(explode('.', $app)));
+    }
 
     public function readApps()
     {
@@ -17,7 +21,7 @@ class DockerApps
 
         while (false !== ($app = $d->read())) {
             if ($app !== "." && $app !== ".." && $app !== ".gitignore") {
-                $files[] = $app;
+                $files[] = $this->reverseApp($app);
             }
         }
 
@@ -31,17 +35,18 @@ class DockerApps
         $soutput = '';
         // in_array($entry, ['mysql, redis']);
 
-        ksort($files);
-        usort($files, fn($app1, $app2) => ($app1 > $app2 || !$this->isService($app1)) ? 1 : -1);
+        sort($files);
+        // usort($files, fn($app1, $app2) => ($app1 > $app2 || $this->isService($app1)) ? 1 : -1);
 
-        foreach ($files as $app) {
+        foreach ($files as $appr) {
+        		$app = $this->reverseApp($appr);
             if ($this->detailed() && count($containers = $this->status($app))) {
                 $stop = $this->down($app);
                 $restart = $this->restart($app);
                 $tail = $this->tail($app);
                 $url = $this->url($app);
                 $sym = '';
-                $coutput .= $sym . $app . ': ' . count($containers) . ' containers' . PHP_EOL;
+                $coutput .= $sym . $appr . ': ' . count($containers) . ' containers' . PHP_EOL;
                 $coutput .= $sym . '--Restart ' . $app . ' | bash="' . $restart . '" terminal=true refresh=true iconName=media-playlist-repeat-song-symbolic' . PHP_EOL;
                 $coutput .= $sym . '--Stop ' . $app . ' | bash="' . $stop . '" terminal=true refresh=true iconName=dialog-error-symbolic' . PHP_EOL;
                 $coutput .= $sym . '--Tail logs | bash="' . $tail . '" terminal=true refresh=true iconName=view-more-symbolic' . PHP_EOL;
@@ -58,7 +63,7 @@ class DockerApps
                 $stopped++;
                 $com = $this->up($app);
                 $cont = '';
-                $soutput .= '--' . $app . $cont . ' | bash="' . $com . '" terminal=true refresh=true iconName=media-playback-start-symbolic' . PHP_EOL;
+                $soutput .= '--' . $appr . $cont . ' | bash="' . $com . '" terminal=true refresh=true iconName=media-playback-start-symbolic' . PHP_EOL;
             }
         }
 

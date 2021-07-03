@@ -26,6 +26,7 @@ alias cmp="cli exec composer"
 alias dc="docker-compose"
 alias pls="sudo"
 alias upgrade="sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove -y"
+alias envoy="./vendor/bin/envoy"
 
 if [ -f ~/.bash_aliases_private ]; then
     . ~/.bash_aliases_private

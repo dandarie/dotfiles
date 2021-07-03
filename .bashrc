@@ -139,3 +139,8 @@ fi
 
 export VISUAL=nano
 export EDITOR=$VISUAL
+
+
+eval "$(zoxide init bash)"
+
+source /home/dan/.config/broot/launcher/bash/br

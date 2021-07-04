@@ -1,0 +1,8 @@
+#!/bin/bash
+
+RIP=185.250.107.169
+LIP=127.0.0.1
+
+autossh -f -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -NR 0.0.0.0:80:$LIP:80 root@$RIP -p2222
+autossh -f -M 0 -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -NR 0.0.0.0:443:$LIP:443 root@$RIP -p2222
+

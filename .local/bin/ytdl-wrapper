@@ -1,0 +1,26 @@
+#!/bin/bash
+
+
+UA="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:86.0) Gecko/20100101 Firefox/86.0"
+
+urldecode() { : "${*//+/ }"; echo -e "${_//%/\\x}"; }
+
+cd ~/Downloads
+
+if [[ -z "$1" ]]; then
+  read -p "Enter download URL: " DL
+else
+  DL=$1
+fi
+
+URL=$(urldecode "${DL/ytdl:/}")
+
+echo "Downloading $URL"
+
+# read -rsp $'Press any key to continue...\n' -n1 key
+
+youtube-dl --user-agent "$UA" --verbose "$URL"
+echo
+echo "Done"
+echo
+read -rsp $'Press any key to continue...\n' -n1 key

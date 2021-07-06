@@ -18,3 +18,9 @@ error_symbol = "[↳](bold red)"
 disabled = false
 symbol = "✖"
 format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
+
+[git_branch]
+symbol = " "
+
+[git_status]
+disabled = true
